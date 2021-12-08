@@ -5,4 +5,19 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable;
   has_many :news;
   
+  
+  
+  
+  def role?
+    
+    @is_id = self.id == 1;
+    return @is_id;
+  end
+  
+  
+  def editor?
+    
+    return false;
+  end
+  
 end
