@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
+
+  
   def home
     
     
@@ -12,6 +14,10 @@ class StaticPagesController < ApplicationController
     end;
     
     @islogged = user_signed_in?;
+    
+    @news = News.find("3")
+
+    @iscan = can? :update, @news # => true
     
     
 
