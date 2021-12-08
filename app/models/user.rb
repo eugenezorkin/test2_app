@@ -4,8 +4,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable;
   has_many :news;
+  has_many :assignments
+  has_many :roles, :through => :assignments
   
   
+  
+  ROLES = %w[admin editor martial]
+  
+  def role1?(role)
+    roles.include? role.to_s
+  end
   
   
   def role?
