@@ -1,5 +1,20 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :check_permissions
+  
+  def check_permissions
+  
+    unless (user_signed_in? && current_user.admin?) then
+      
+      #render json: {error: "Вы не имеете прав для доступа к данному разделу " << (user_signed_in? ? "true" : "false")}
+      #return false
+      respond_to do |format|
+        format.html { render :file => "#{Rails.root}/public/forbid.html", :layout => false, :status => :ok }
+      #  format.html { redirect_to root_path, notice: "Вы не имеете прав для доступа к разделу admin " << (user_signed_in? ? "true" : "false") }
+      end
+    end
+    return true
+  end
 
   # GET /users
   # GET /users.json
