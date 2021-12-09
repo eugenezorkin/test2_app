@@ -6,7 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable;
   has_many :news;
   #enum role: [ :martial, :editor, :admin  ]
-  attr_accessor :name
+  #attr_accessor :name
   before_save { self.email = email.downcase } # :default_values
   validates :name, presence: true, length: { maximum: 255 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
