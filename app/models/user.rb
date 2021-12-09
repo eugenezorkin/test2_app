@@ -18,7 +18,7 @@ class User < ApplicationRecord
   
   def default_values
     self.digest ||= :weekly;
-   self.digest = :weekly if self.digest.nil?
+    self.digest = :weekly if self.digest.nil?
   end
   
   

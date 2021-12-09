@@ -4,6 +4,7 @@ class NewsController < ApplicationController
   #before_action :check_permissions, :only => [:new, :create, :cancel]
 
   before_action :check_permissions, :only => [:new, :create, :update, :cancel, :edit]
+
   
   def check_permissions
   
@@ -88,7 +89,7 @@ class NewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def news_params
-      params.require(:news).permit(:title, :content, :author, :user_id)
+      params.require(:news).permit(:title, :content, :author, :user_id, :edits_number)
     end
     
 end
