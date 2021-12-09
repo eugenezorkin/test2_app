@@ -12,6 +12,21 @@
     <%= f.label :name %><br />
     <%= f.text_field :name, autofocus: true %>
   </div>
+  
+  <div class="field">
+    <%= f.label :role %><br />
+    <%= f.text_field :role, autofocus: true %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :admin %><br />
+    <%= f.check_box :admin, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :editor %><br />
+    <%= f.check_box :editor, autofocus: true %>
+  </div>
 
   <div class="field">
     <%= f.label :password %>

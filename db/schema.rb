@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_08_194636) do
+ActiveRecord::Schema.define(version: 2021_12_09_155902) do
 
   create_table "assigments", force: :cascade do |t|
     t.integer "user_id"
@@ -46,6 +46,9 @@ ActiveRecord::Schema.define(version: 2021_12_08_194636) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "assigment_id"
     t.string "name"
+    t.integer "role"
+    t.boolean "admin"
+    t.boolean "editor"
   end
 
 end
