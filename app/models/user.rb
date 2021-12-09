@@ -5,11 +5,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable;
   has_many :news;
-  has_many :assignments
-  has_many :roles, :through => :assignments
   enum role: [ :martial, :editor, :admin  ]
   attr_accessor :name
-  before_save { self.email = email.downcase }, :default_values
+  before_save { self.email = email.downcase } # :default_values
   validates :name, presence: true, length: { maximum: 255 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
