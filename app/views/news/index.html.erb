@@ -11,7 +11,7 @@
       <th>Author</th>
       <th>User</th>
       <th>User email</th>
-      <th colspan="3"></th>
+      <th <%if(@can_edit)%>colspan="3"><%end%></th>
     </tr>
   </thead>
 
@@ -25,8 +25,8 @@
         <td><%= news.user_id %></td>
         <td><%= news.user.email %></td>
         <td><%= link_to 'Show', news %></td>
-        <td><%= link_to 'Edit', edit_news_path(news) %></td>
-        <td><%= link_to 'Destroy', news, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <%if(@can_edit)%><td><%= link_to 'Edit', edit_news_path(news) %></td><%end%>
+        <%if(@can_edit)%><td><%= link_to 'Destroy', news, method: :delete, data: { confirm: 'Are you sure?' } %></td><%end%>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New News', new_news_path %>
+<%if(@can_edit)%><%= link_to 'New News', new_news_path %><%end%>

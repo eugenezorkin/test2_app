@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_09_155902) do
+ActiveRecord::Schema.define(version: 2021_12_09_195022) do
 
   create_table "assigments", force: :cascade do |t|
     t.integer "user_id"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 2021_12_09_155902) do
     t.integer "role"
     t.boolean "admin"
     t.boolean "editor"
+    t.integer "digest"
   end
 
 end

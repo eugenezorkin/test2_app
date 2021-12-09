@@ -3,11 +3,27 @@ class NewsController < ApplicationController
   #before_action :authenticate_user!
   #before_action :check_permissions, :only => [:new, :create, :cancel]
 
+  before_action :check_permissions, :only => [:new, :create, :update, :cancel, :edit]
+  
+  def check_permissions
+  
+    unless can_edit? then
+      respond_to do |format|
+        format.html { render :file => "#{Rails.root}/public/forbid.html", :layout => false, :status => :ok }
+      end
+    end
+    return true
+  end
+  
+  def can_edit? 
+    return (user_signed_in? && (current_user.admin? || current_user.editor?))
+  end
 
   # GET /news
   # GET /news.json
   def index
     @news = News.all
+    @can_edit = can_edit?;
   end
 
   # GET /news/1
@@ -75,10 +91,4 @@ class NewsController < ApplicationController
       params.require(:news).permit(:title, :content, :author, :user_id)
     end
     
-    
-    def check_permissions
-      #authenticate_user! && current_user.editor? 
-      #authenticate_user! if !user_signed_in? || !current_user.editor?
-      #return false;
-    end
 end
