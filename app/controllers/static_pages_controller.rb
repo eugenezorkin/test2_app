@@ -4,8 +4,9 @@ class StaticPagesController < ApplicationController
   def home
     
     
-    @firsttitle = User.first.news.first.title;
+    @firsttitle = "no value";
     if user_signed_in?
+      @firsttitle = User.first.news.first.title;
       @curusername = current_user.email
       @isId1 = current_user.role?;
     else 
