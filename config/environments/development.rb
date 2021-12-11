@@ -33,8 +33,10 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
+
+  config.action_mailer.delivery_method = :sendmail #eto ya dobavil
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true #flase
 
   config.action_mailer.perform_caching = false
 
@@ -77,5 +79,14 @@ Rails.application.configure do
   # Allow connections to local server.
   config.hosts.clear
   
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  host = '3d17b7920b48403185e55844a2bae8b0.vfs.cloud9.us-east-2.amazonaws.com'
+  #config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { host: host, protocol: 'https' }
+  
+  
+  my_logger ||= Logger.new("#{Rails.root}/log/my.log")
+  my_logger.info "test"
+  my_logger.info "test2"
+  my_logger.info "test3"
+ 
 end

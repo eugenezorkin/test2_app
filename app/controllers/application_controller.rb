@@ -1,7 +1,11 @@
 class ApplicationController < ActionController::Base
   
-  def home 
+  def home
+    
     render html: "Main page"
+    
+    #User.create(email: "test12@test.ru", name: "test12")
+    
   end
   
   

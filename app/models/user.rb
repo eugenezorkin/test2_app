@@ -22,6 +22,25 @@ class User < ApplicationRecord
   end
   
   
+  def create
+    abort("Message goes here")
+    my_logger.info "create user"
+    #@user = User.new(params[:user])
+    
+    respond_to do |format|
+      if @user.save
+        # Сказать UserMailer отослать приветственное письмо после сохранения
+        UserMailer.with(user: @user).welcome_email.deliver_later #.deliver_later
+        my_logger.info "user save"
+        format.html { redirect_to(@user, notice: 'Пользователь успешно создан.') }
+        format.json { render json: @user, status: :created, location: @user }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
 
   #def role=(value)
   #  super

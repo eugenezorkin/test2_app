@@ -4,6 +4,26 @@ class StaticPagesController < ApplicationController
   def home
     
     
+    #abort("Message goes here")
+    @user = User.first;
+    my_logger ||= Logger.new("#{Rails.root}/log/my.log")
+    my_logger.info "user "+@user.name
+    #respond_to do |format|
+      if @user.save
+        my_logger.info "user save"
+        # Сказать UserMailer отослать приветственное письмо после сохранения
+        UserMailer.welcome_email(@user).deliver_now
+        #UserMailer.with(user: @user).welcome_email.deliver_now #.deliver_later
+        my_logger.info "after UserMailer with"
+        #format.html { redirect_to(@user, notice: 'Пользователь успешно создан.') }
+        #format.json { render json: @user, status: :created, location: @user }
+      else
+        #format.html { render action: 'new' }
+        #format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    #end
+    
+    
     @firsttitle = "no value";
     @isAdmin = "no_value";
     @isEditor = "no_value";
