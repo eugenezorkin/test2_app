@@ -1,0 +1,52 @@
+p#notice
+  = notice
+h1
+  | News
+table
+  thead
+    tr
+      th
+        | Id
+      th
+        | Title
+      th
+        | Content
+      th
+        | Author
+      th
+        | User
+      th
+        | User email
+      th
+        | edits number
+      |  <th 
+      - if(@can_edit)
+      | colspan="3">
+  tbody
+    - @news.each do |news|
+      tr
+        td
+          = news.id
+        td
+          = news.title
+        td
+          = news.content
+        td
+          = news.author
+        td
+          = news.user_id
+        td
+          = news.user.email
+        td
+          = news.edits_number
+        td
+          = link_to 'Show', news
+        - if(@can_edit)
+        td
+          = link_to 'Edit', edit_news_path(news)
+    - if(@can_edit)
+    td
+      = link_to 'Destroy', news, method: :delete, data: { confirm: 'Are you sure?' }
+br
+- if(@can_edit)
+= link_to 'New News', new_news_path

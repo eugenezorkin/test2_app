@@ -1,0 +1,25 @@
+p#notice
+  = notice
+p
+  strong
+    | Email:
+  = @user.email
+p
+  strong
+    | Name:
+  = @user.name
+p
+  strong
+    | Admin:
+  = @user.admin
+p
+  strong
+    | Editor:
+  = @user.editor
+p
+  strong
+    | Digest:
+  = @user.digest
+= link_to 'Edit', edit_user_path(@user)
+|  | 
+= link_to 'Back', users_path
