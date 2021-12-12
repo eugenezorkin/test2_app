@@ -34,6 +34,7 @@ gem 'cancancan', '3.2.0'
 
 gem 'resque', '2.2.0'
 gem 'resque-scheduler', '4.5.0'
+gem 'html2slim'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
