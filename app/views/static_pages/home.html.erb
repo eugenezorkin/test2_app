@@ -14,3 +14,7 @@
 <p>isCan <%=@iscan%></p>
 <p>isAdmin <%=@isAdmin%></p>
 <p>isEditor <%=@isEditor%></p>
+
+<% @dailydigest_users.each do |dailydigest_user| %>
+       <p> <%= dailydigest_user.name %></p>
+<% end %>

@@ -30,6 +30,11 @@
     <%= form.label :editor %>
     <%= form.check_box :editor %>
   </div>
+  
+  <div class="field">
+    <%= form.label :digest %>
+    <%= form.select(:digest, User.digests.keys.map {|digest| [digest.titleize,digest]}) %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>

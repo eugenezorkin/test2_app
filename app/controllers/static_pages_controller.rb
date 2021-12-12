@@ -3,6 +3,10 @@ class StaticPagesController < ApplicationController
   
   def home
     
+    @dailydigest_users = User.where(:digest=>:dayly)
+    @dailydigest_users.each do |dailydigest_user|
+      UserMailer.welcome_email(dailydigest_user).deliver_now
+    end
     
     #abort("Message goes here")
     @user = User.first;
@@ -12,7 +16,7 @@ class StaticPagesController < ApplicationController
       if @user.save
         my_logger.info "user save"
         # Сказать UserMailer отослать приветственное письмо после сохранения
-        UserMailer.welcome_email(@user).deliver_now
+        #UserMailer.welcome_email(@user).deliver_now
         #UserMailer.with(user: @user).welcome_email.deliver_now #.deliver_later
         my_logger.info "after UserMailer with"
         #format.html { redirect_to(@user, notice: 'Пользователь успешно создан.') }

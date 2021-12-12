@@ -1,0 +1,7 @@
+every_two_minute_job:
+ cron: "*/1 * * * *"
+ class: TestJob
+ 
+ description: "every two minute test job"
+ queue: new1
+ args:

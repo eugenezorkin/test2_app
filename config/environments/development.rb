@@ -83,10 +83,5 @@ Rails.application.configure do
   #config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.default_url_options = { host: host, protocol: 'https' }
   
-  
-  my_logger ||= Logger.new("#{Rails.root}/log/my.log")
-  my_logger.info "test"
-  my_logger.info "test2"
-  my_logger.info "test3"
  
 end
