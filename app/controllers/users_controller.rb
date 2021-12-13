@@ -1,20 +1,6 @@
-class Admin::UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :check_permissions
-  
-  def check_permissions
-  
-    unless (user_signed_in? && current_user.admin?) then
-      
-      #render json: {error: "Вы не имеете прав для доступа к данному разделу " << (user_signed_in? ? "true" : "false")}
-      #return false
-      respond_to do |format|
-        format.html { render :file => "#{Rails.root}/public/forbid.html", :layout => false, :status => :ok }
-      #  format.html { redirect_to root_path, notice: "Вы не имеете прав для доступа к разделу admin " << (user_signed_in? ? "true" : "false") }
-      end
-    end
-    return true
-  end
+class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :destroy]
+  before_action :set_profile_user, only: [:update, :edit]
 
   # GET /users
   # GET /users.json
@@ -57,7 +43,7 @@ class Admin::UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to profile_path, notice: 'Данные успешно сохранены' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -71,7 +57,7 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to action: 'index', notice: 'User was successfully updated.' }
+      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -81,9 +67,13 @@ class Admin::UsersController < ApplicationController
     def set_user
       @user = User.find(params[:id])
     end
+    
+    def set_profile_user
+      @user = current_user
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :name, :admin, :editor, :digest)
+       params.require(:user).permit(:name, :digest)
     end
 end

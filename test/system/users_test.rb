@@ -14,10 +14,6 @@ class UsersTest < ApplicationSystemTestCase
     visit users_url
     click_on "New User"
 
-    check "Admin" if @user.admin
-    check "Editor" if @user.editor
-    fill_in "Email", with: @user.email
-    fill_in "Name", with: @user.name
     click_on "Create User"
 
     assert_text "User was successfully created"
@@ -28,10 +24,6 @@ class UsersTest < ApplicationSystemTestCase
     visit users_url
     click_on "Edit", match: :first
 
-    check "Admin" if @user.admin
-    check "Editor" if @user.editor
-    fill_in "Email", with: @user.email
-    fill_in "Name", with: @user.name
     click_on "Update User"
 
     assert_text "User was successfully updated"
