@@ -1,5 +1,5 @@
-<h1>New News</h1>
-
+<h1>Новая новость</h1>
+<% @form_url = {controller: :news, action: :index}%>
 <%= render 'form', news: @news %>
 
-<%= link_to 'Back', news_index_path %>
+<%= link_to '<<К списку', action: :index %>

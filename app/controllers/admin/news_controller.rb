@@ -1,11 +1,12 @@
-class NewsController < ApplicationController
+class Admin::NewsController < ApplicationController
   before_action :set_news, only: [:show, :edit, :update, :destroy]
   #before_action :authenticate_user!
   #before_action :check_permissions, :only => [:new, :create, :cancel]
 
   before_action :check_permissions, :only => [:new, :create, :update, :cancel, :edit]
-
-  
+  before_action :set_current_user_id_to_created_news, only: :create
+  before_action :set_current_user_id_to_editor, only: :update
+ 
   def check_permissions
   
     unless can_edit? then
@@ -15,6 +16,8 @@ class NewsController < ApplicationController
     end
     return true
   end
+  
+  
   
   def can_edit? 
     return (user_signed_in? && (current_user.admin? || current_user.editor?))
@@ -44,11 +47,13 @@ class NewsController < ApplicationController
   # POST /news
   # POST /news.json
   def create
+    
     @news = News.new(news_params)
 
     respond_to do |format|
       if @news.save
-        format.html { redirect_to @news, notice: 'News was successfully created.' }
+        flash[:success] = "Новость успешно создана."
+        format.html { redirect_to action: 'edit', id: @news.id }
         format.json { render :show, status: :created, location: @news }
       else
         format.html { render :new }
@@ -62,10 +67,11 @@ class NewsController < ApplicationController
   def update
     respond_to do |format|
       if @news.update(news_params)
-        format.html { redirect_to @news, notice: 'News was successfully updated.' }
+        flash[:success] = "Новость успешно изменена."
+        format.html { redirect_to action: 'edit', id: @news.id }
         format.json { render :show, status: :ok, location: @news }
       else
-        format.html { render :edit }
+        format.html { render action: 'edit', id: @news.id }
         format.json { render json: @news.errors, status: :unprocessable_entity }
       end
     end
@@ -76,7 +82,8 @@ class NewsController < ApplicationController
   def destroy
     @news.destroy
     respond_to do |format|
-      format.html { redirect_to news_index_url, notice: 'News was successfully destroyed.' }
+      flash[:success] = "Новость была удалена."
+      format.html { redirect_to action: 'index' }
       format.json { head :no_content }
     end
   end
@@ -89,7 +96,15 @@ class NewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def news_params
-      params.require(:news).permit(:title, :content, :author, :user_id, :edits_number)
+      params.require(:news).permit(:title, :content, :user_id) 
+    end
+  
+    def set_current_user_id_to_created_news
+      params[:news][:user_id] = current_user.id
+      params[:news][:last_editor_id] = current_user.id
     end
     
+    def set_current_user_id_to_editor
+      params[:news][:last_editor_id] = current_user.id
+    end
 end

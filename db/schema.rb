@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_09_203705) do
+ActiveRecord::Schema.define(version: 2021_12_13_194426) do
 
   create_table "assigments", force: :cascade do |t|
     t.integer "user_id"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 2021_12_09_203705) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.integer "edits_number"
+    t.string "last_editor_id"
+    t.string "integer"
   end
 
   create_table "roles", force: :cascade do |t|

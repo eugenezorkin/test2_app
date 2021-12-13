@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Новости</h1>
 
 <table class="table">
@@ -17,18 +15,18 @@
   </thead>
 
   <tbody>
-    <% @news.each do |news| %>
+    <% @news.each do |new| %>
       <tr>
-        <td><%= news.id %></td>
-        <td><%= news.title %></td>
-        <td><%= news.content %></td>
-        <td><%= news.author %></td>
-        <td><%= news.user_id %></td>
-        <td><%= news.user.email %></td>
-        <td><%= news.edits_number %></td>
-        <td><%= link_to 'Show', news %></td>
-        <%if(@can_edit)%><td><%= link_to 'Edit', edit_news_path(news) %></td><%end%>
-        <%if(@can_edit)%><td><%= link_to 'Destroy', news, method: :delete, data: { confirm: 'Are you sure?' } %></td><%end%>
+        <td><%= new.id %></td>
+        <td><%= new.title %></td>
+        <td><%= new.content %></td>
+        <td><%= new.author %></td>
+        <td><%= new.user_id %></td>
+        <td><%= new.user.email %></td>
+        <td><%= new.edits_number %></td>
+        <td><%= link_to "Просмотр", new, target: "_blank" %></td>
+        <%if(@can_edit)%><td><%= link_to "Редактировать", :controller => :news, :action => :edit, :id => new.id %></td><%end%>
+        <%if(@can_edit)%><td><%= link_to 'Удалить', {controller: :news, action: :show, id: new.id}, method: :delete, data: { confirm: 'Вы уверены?' } %></td><%end%>
       </tr>
     <% end %>
   </tbody>
@@ -36,4 +34,4 @@
 
 <br>
 
-<%if(@can_edit)%><%= link_to 'New News', new_news_path %><%end%>
+<%if(@can_edit)%><%= link_to "Создать новость", {:controller => :news, :action => :new}, class: "btn btn-primary" %><%end%>

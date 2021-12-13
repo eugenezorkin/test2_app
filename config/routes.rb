@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   
-  resources :news
+  namespace :admin do
+    resources :news1s
+  end
+  resources :news, only: [ :index, :show ]
   
   devise_for :users, :path_prefix => 'my', controllers: { registrations: 'users/registrations' } 
   root 'static_pages#home'
