@@ -1,12 +1,5 @@
 Rails.application.routes.draw do
   
-  
-  
-  namespace :admin1 do
-    resources :users, path: '', only: [ :index ]
-    resources :users, except: [ :index, :new ]
-  end
-  
   resources :news
   
   devise_for :users, :path_prefix => 'my', controllers: { registrations: 'users/registrations' } 
@@ -16,9 +9,9 @@ Rails.application.routes.draw do
  #  post '/profile', to: 'users#update_profile', via: 'get', :as => :update_profile
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :admin do
-    #resources :users, path: '', only: [ :index ]
-    #resources :users, except: [ :index, :new ]
-    resources :users
+    resources :users, path: '', only: [ :index ]
+    resources :users, except: [ :index, :new ]
+    resources :news
   end
   
   resources :users
