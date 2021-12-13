@@ -8,7 +8,7 @@ Rails.application.routes.draw do
    get '/profile', to: 'users#edit_profile', via: 'get', :as => :edit_profile
    post '/profile', to: 'users#update_profile', via: 'get', :as => :update_profile
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  scope :admin do
+  namespace :admin do
     resources :users, path: '', only: [ :index ]
     resources :users, except: [ :index, :new, :update_profile, :edit_profile ]
     
