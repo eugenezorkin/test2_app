@@ -1,50 +1,6 @@
-<%= form_with(model: users) do |form| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-        <% user.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :admin %>
-    <%= form.check_box :admin %>
-  </div>
-
-  <div class="field">
-    <%= form.label :editor %>
-    <%= form.check_box :editor %>
-  </div>
-  
-  <div class="field">
-    <%= form.label :digest %>
-    <%= form.select(:digest, User.digests.keys.map {|digest| [digest.titleize,digest]}) %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
-
-
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_with(model: @user, local: true) do |f| %>
+    <%= form_with(model: @user, local: true) do |form| %>
       <%= render 'shared/error_messages' %>
 
 
@@ -55,19 +11,18 @@
     <%= form.label :name %>
     <%= form.text_field :name, class: 'form-control' %>
 
-    <%= form.label :admin %>
-    <%= form.check_box :admin, class: 'form-control' %>
+    <%= form.label :admin, class: 'form-check-label' %>
+    <%= form.check_box :admin, class: 'form-check-input' %>
 
 
-    <%= form.label :editor %>
-    <%= form.check_box :editor, class: 'form-control' %>
+    <%= form.label :editor, class: 'form-check-label' %>
+    <%= form.check_box :editor, class: 'form-check-input' %>
 
 
     <%= form.label :digest %>
-    <%= form.select(:digest, User.digests.keys.map {|digest| [digest.titleize,digest]}) , class: 'form-control'%>
+    <%= form.select(:digest, User.digests.keys.map {|digest| [digest.titleize,digest]} , {}, class: 'form-control')%>
 
-
-      <%= f.submit "Сохранить", class: "btn btn-primary" %>
+    <%= form.submit "Сохранить", class: "btn btn-primary" %>
     <% end %>
 
   

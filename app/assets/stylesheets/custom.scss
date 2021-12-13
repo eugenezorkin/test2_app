@@ -136,3 +136,13 @@ input {
     color: $state-danger-text;
   }
 }
+
+
+.newsitem:first-of-type {
+  padding: 20px 0;
+  border-bottom: 1px solid #ccc;
+  margin-bottom:10px;
+  h1 {
+    text-align:left;
+  }
+}
