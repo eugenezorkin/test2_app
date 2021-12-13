@@ -5,6 +5,8 @@ ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', ' 6.1.4.1'
+
+gem 'bootstrap-sass', '3.4.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '1.4'
 # Use Puma as the app server
@@ -36,7 +38,7 @@ gem 'resque', '2.2.0'
 gem 'resque-scheduler', '4.5.0'
 gem 'html2slim'
 #gem 'slim-rails'
-gem 'bootstrap-sass', '3.4.1'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
