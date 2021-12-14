@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   end
   resources :news, only: [ :index, :show ]
   
-  devise_for :users, :path_prefix => 'my', controllers: { registrations: 'users/registrations' } 
+  devise_for :users, :path_prefix => 'my', controllers: { registrations: 'users/registrations' }
   root 'static_pages#home'
   #resources :users, path: '/profile', only: [ :edit_profile  ]
   # get '/profile', to: 'users#edit_profile', via: 'get', :as => :edit_profile
