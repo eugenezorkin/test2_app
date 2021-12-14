@@ -3,22 +3,20 @@ class NewsMailer < ApplicationMailer
   
   
   def dailydigest_email(user,digest_news,day_date)
-    #my_logger ||= Logger.new("#{Rails.root}/log/my.log")
-    #my_logger.info "отправка письма на адрес " << user.email
-    #@user = params[:user]
-    #@url  = 'http://example.com/login'
-    #mail(to: @user.email, subject: 'Welcome to My Awesome Site')
-    #my_logger.info user.email
-    
-    #user = User.first;
-    #digest_news = New.all
-    #day_date = "11/09/2001"
+  
     @user = user
     @news = digest_news
     @day_date = day_date
-    mail to: "test@test.ru", subject: "Ежедневный дайджест"
-    #my_logger.info "welcome user end"
-
-    end
+    mail to: user.email, subject: "Ежедневный дайджест"
+  end
     
+    
+    
+   def weeklydigest_email(user,digest_news,day_date)
+  
+    @user = user
+    @news = digest_news
+    @day_date = day_date
+    mail to: user.email, subject: "Еженедельный дайджест"
+  end
 end

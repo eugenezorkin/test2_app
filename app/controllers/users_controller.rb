@@ -71,7 +71,7 @@ class UsersController < ApplicationController
     end
     
     def set_profile_user
-      unless (user_signed_in? && current_user.admin?) then
+      unless (user_signed_in?) then
         respond_to do |format|
           format.html { render :file => "#{Rails.root}/public/forbid.html", :layout => false, :status => :ok }
         end

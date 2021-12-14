@@ -11,14 +11,14 @@
     <%= form.label :name %>
     <%= form.text_field :name, class: 'form-control' %>
 
-    <%= form.label :admin, class: 'form-check-label' %>
+    <div class="form-check">
     <%= form.check_box :admin, class: 'form-check-input' %>
-
-
-    <%= form.label :editor, class: 'form-check-label' %>
-    <%= form.check_box :editor, class: 'form-check-input' %>
-
-
+    <%= form.label :admin, class: 'form-check-label' %>
+    </div>
+    <div class="form-check">
+    <%= form.check_box :editor, class: 'form-check-input', id: 'editor_checkbox' %>
+    <%= form.label :editor, class: 'form-check-label', for: 'editor_checkbox' %>
+    </div>
     <%= form.label :digest %>
     <%= form.select(:digest, User.digests.keys.map {|digest| [digest.titleize,digest]} , {}, class: 'form-control')%>
 

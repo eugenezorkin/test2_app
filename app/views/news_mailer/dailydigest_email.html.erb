@@ -4,15 +4,8 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Ежедневный дайджест новостей за <%= @day_date%></h1>
-    <p>
-      You have successfully signed up to example.com,
-      your username is: <%= @user.email %>.<br>
-    </p>
-    <p>
-      To login to the site, just follow this link: <%= @url %>.
-    </p>
-    <p>Thanks for joining and have a great day!</p>
+    <h1>Ежедневный дайджест новостей</h1>
+     <p>Вы подписаны на еженедельную рассылку новостей. Если вы больше не хотите болше получать дайджест вы можете сделать это в настройках своего профиля на сайте.</p>
     
     <% @news.each do |new| %>
        <p> <%= link_to new.title, new %></p>

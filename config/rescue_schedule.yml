@@ -1,7 +1,13 @@
-every_two_minute_job:
- cron: "*/1 * * * *"
- class: TestJob
+daily_digest_job:
+ cron: "0 8 * * *"
+ class: DailyDigestJob
+ description: "daily digest"
+ queue: main
+ args:
  
- description: "every two minute test job"
- queue: new1
+weekly_digest_job:
+ cron: "0 7 * 1 *"
+ class: WeeklyDigestJob
+ description: "daily digest"
+ queue: main
  args:

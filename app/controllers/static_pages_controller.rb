@@ -3,11 +3,31 @@ class StaticPagesController < ApplicationController
   
   def home
     
+    @day_date = "11/09/2001"
+    @start_date = (Date.today - 1.week).beginning_of_week.beginning_of_day
+    @end_date   = (Date.today - 1.week).end_of_week.end_of_day
+    #@dailydigest_news = New.all 
+    #@dailydigest_news = News.where("created_at > ? AND created_at < ?", Date.today.at_beginning_of_month - 2.months, Date.today).group("date_trunc('month', created_at)").count
+    #Date.today.at_beginning_of_month - 2.months, Date.today
+    @dailydigest_news = News.where("created_at > ? AND created_at < ?", @start_date, @end_date);
+    
+    
+    @start_date = (Date.today - 1.day).beginning_of_day
+    @end_date   = (Date.today - 1.day).end_of_day
+    @dailydigest_news = News.where("created_at > ? AND created_at < ?", @start_date, @end_date);
     @dailydigest_users = User.where(:digest=>:dayly)
-    @dailydigest_users.each do |dailydigest_user|
-      UserMailer.welcome_email(dailydigest_user).deliver_now
+    
+    if @dailydigest_news.count > 0 && @dailydigest_users.count >0
+      @dailydigest_users.each do |dailydigest_user|
+        #NewsMailer.daily_digest(dailydigest_user,@dailydigest_news,@day_date).deliver_now
+      end
     end
     
+    
+    @dailydigest_users = User.where(:digest=>:dayly)
+    #@dailydigest_users.each do |dailydigest_user|
+    #  NewsMailer.daily_digest(dailydigest_user,@dailydigest_news,@day_date).deliver_now
+    #end
     #abort("Message goes here")
     @user = User.first;
     my_logger ||= Logger.new("#{Rails.root}/log/my.log")
@@ -48,7 +68,5 @@ class StaticPagesController < ApplicationController
 
     @iscan = can? :update, @news # => true
     
-    
-
   end
 end
