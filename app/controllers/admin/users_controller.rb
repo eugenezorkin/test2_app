@@ -1,6 +1,13 @@
 class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :check_permissions
+  #before_action :denied_access, only: [:create]
+  #before_action :check_permissions
+  
+  
+  def denied_access
+    format.html { render :file => "#{Rails.root}/public/forbid.html", :layout => false, :status => :ok }
+    
+  end
   
   def check_permissions
   
@@ -45,7 +52,7 @@ class Admin::UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         flash[:success] = t('.success')
-        format.html { redirect_to @user}
+        format.html { redirect_to @user }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -57,13 +64,15 @@ class Admin::UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    my_logger ||= Logger.new("#{Rails.root}/log/my.log")
+    my_logger.info "USER HANDLER" 
     respond_to do |format|
       if @user.update(user_params)
         flash[:success] = t('.success')
-        format.html { redirect_to @user }
-        format.json { render :show, status: :ok, location: @user }
+        format.html { redirect_to action: 'edit', id: @user.id, status: :see_other}
+        format.json { render :show, status: :see_other, location: @user }
       else
-        format.html { render :edit }
+        format.html { render action: 'edit', id: @user.id, status: :see_other}
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end

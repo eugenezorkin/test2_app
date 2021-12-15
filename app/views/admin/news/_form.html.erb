@@ -3,13 +3,13 @@
     <%= form_with(model: @news,url: @form_url, local: true) do |form| %>
       <%= render 'shared/error_messages_news' %>
 
-    <%= form.label :title %>
+    <%= form.label t('.title') %>
     <%= form.text_field :title, class: 'form-control' %>
 
-    <%= form.label :content %>
+    <%= form.label t('.content') %>
     <%= form.text_area :content , class: 'form-control'%>
 
-    <%= form.submit "Сохранить", class: "btn btn-primary" %>
+    <%= form.submit t('.save_button'), class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

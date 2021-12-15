@@ -6,43 +6,34 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get users_url
+    get url_for({controller: 'admin/users', action: :index})
     assert_response :success
   end
 
-  test "should get new" do
-    get new_user_url
-    assert_response :success
-  end
-
-  test "should create user" do
-    assert_difference('User.count') do
-      post users_url, params: { user: {  } }
-    end
-
-    assert_redirected_to user_url(User.last)
-  end
 
   test "should show user" do
-    get user_url(@user)
+    get url_for({controller: 'admin/users', action: :show, id: @user.id})
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_user_url(@user)
+    get url_for({controller: 'admin/users', action: :edit, id: @user.id})
     assert_response :success
   end
 
   test "should update user" do
-    patch user_url(@user), params: { user: {  } }
-    assert_redirected_to user_url(@user)
+    my_logger ||= Logger.new("#{Rails.root}/log/my.log")
+    my_logger.info "USER ONTROLLER TEST irl" 
+      my_logger.info url_for({controller: 'admin/users', action: :show, id: @user.id})
+    patch url_for({controller: 'admin/users', action: :show, id: @user.id}), params: { user: { email: "newtest@test.com", name: "new test name" } }
+    assert_redirected_to url_for({controller: 'admin/users', action: :edit, id: @user.id})
   end
 
   test "should destroy user" do
     assert_difference('User.count', -1) do
-      delete user_url(@user)
+      delete url_for({controller: 'admin/users', action: :show, id: @user.id})
     end
 
-    assert_redirected_to users_url
+    assert_redirected_to url_for({controller: 'admin/users', action: :index})
   end
 end

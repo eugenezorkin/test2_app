@@ -8,7 +8,6 @@
       <th>Content</th>
       <th>Author</th>
       <th>User</th>
-      <th>User email</th>
       <th>edits number</th>
       <th <%if(@can_edit)%>colspan="3"><%end%></th>
     </tr>
@@ -22,7 +21,6 @@
         <td><%= new.content %></td>
         <td><%= new.author %></td>
         <td><%= new.user_id %></td>
-        <td><%= new.user.email %></td>
         <td><%= new.edits_number %></td>
         <td><%= link_to "Просмотр", new, target: "_blank" %></td>
         <%if(@can_edit)%><td><%= link_to "Редактировать", :controller => :news, :action => :edit, :id => new.id %></td><%end%>

@@ -44,6 +44,8 @@ class NewsController < ApplicationController
   # POST /news
   # POST /news.json
   def create
+    my_logger ||= Logger.new("#{Rails.root}/log/my.log")
+      my_logger.info "NE TOT CONTROLLER CREATE"
     @news = News.new(news_params)
 
     respond_to do |format|
@@ -61,6 +63,8 @@ class NewsController < ApplicationController
   # PATCH/PUT /news/1
   # PATCH/PUT /news/1.json
   def update
+    my_logger ||= Logger.new("#{Rails.root}/log/my.log")
+      my_logger.info "NE TOT CONTROLLER UPDTAE"
     respond_to do |format|
       if @news.update(news_params)
         flash[:success] = t('.success')

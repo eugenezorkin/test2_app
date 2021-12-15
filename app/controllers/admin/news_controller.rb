@@ -1,8 +1,8 @@
 class Admin::NewsController < ApplicationController
-  before_action :set_news, only: [:show, :edit, :update, :destroy]
+  before_action :set_news , only: [:show, :edit, :update, :destroy]
   #before_action :authenticate_user!
 
-  before_action :check_permissions, :only => [:new, :create, :update, :cancel, :edit]
+  #before_action :check_permissions, :only => [:new, :create, :update, :cancel, :edit]
   before_action :set_current_user_id_to_created_news, only: :create
   before_action :set_current_user_id_to_editor, only: :update
  
@@ -46,14 +46,13 @@ class Admin::NewsController < ApplicationController
   # POST /news
   # POST /news.json
   def create
-    
     @news = News.new(news_params)
 
     respond_to do |format|
       if @news.save
         flash[:success] = t('.success')
         format.html { redirect_to action: 'edit', id: @news.id }
-        format.json { render :show, status: :created, location: @news }
+        format.json { render :edit, status: :created, location: @news }
       else
         format.html { render :new }
         format.json { render json: @news.errors, status: :unprocessable_entity }
@@ -67,10 +66,10 @@ class Admin::NewsController < ApplicationController
     respond_to do |format|
       if @news.update(news_params)
         flash[:success] = t('.success')
-        format.html { redirect_to action: 'edit', id: @news.id }
-        format.json { render :show, status: :ok, location: @news }
+        format.html { redirect_to action: 'edit', id: @news.id , status: :see_other}
+        format.json { render :show, status: :see_other, location: @news }
       else
-        format.html { render action: 'edit', id: @news.id }
+        format.html { render action: 'edit', id: @news.id, status: :see_other }
         format.json { render json: @news.errors, status: :unprocessable_entity }
       end
     end
@@ -99,11 +98,19 @@ class Admin::NewsController < ApplicationController
     end
   
     def set_current_user_id_to_created_news
-      params[:news][:user_id] = current_user.id
-      params[:news][:last_editor_id] = current_user.id
+      if params[:news][:user_id].nil?
+        params[:news][:user_id] = current_user.id
+        params[:news][:last_editor_id] = current_user.id
+      else
+        params[:news][:last_editor_id] = params[:news][:user_id]
+      end
     end
     
     def set_current_user_id_to_editor
-      params[:news][:last_editor_id] = current_user.id
+      if not current_user.nil?
+        params[:news][:last_editor_id] = current_user.id
+      else
+        params[:news][:last_editor_id] = 0
+      end
     end
 end

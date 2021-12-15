@@ -1,9 +1,7 @@
 class News < ApplicationRecord
   belongs_to :user
   before_save :count_edits
-  #validates :edits_number, numericality: { less_than_or_equal_to: 5, message: "Превышен лимит редактирований записи - 5"}
-  #:numericality => { :less_than_or_equal_to => 5, :message => "Превышен лимит редактирований записи - 5" }
-  #, :check_edits_number
+
   validate :check_edits_number
   
   def check_edits_number

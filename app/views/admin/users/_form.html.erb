@@ -1,6 +1,6 @@
-<div class="row">
+<div class="row" >
   <div class="col-md-6 col-md-offset-3">
-    <%= form_with(model: @user, local: true) do |form| %>
+    <%= form_with(model: @user, url: url_for({controller: 'admin/users', action: :show, id: params[:id]}), local: true) do |form| %>
       <%= render 'shared/error_messages' %>
 
 
@@ -20,7 +20,7 @@
     <%= form.label :editor, class: 'form-check-label', for: 'editor_checkbox' %>
     </div>
     <%= form.label :digest %>
-    <%= form.select(:digest, User.digests.keys.map {|digest| [digest.titleize,digest]} , {}, class: 'form-control')%>
+    <%= form.select(:digest, User.digests.keys.map {|digest| [t(digest),digest]} , {}, class: 'form-control')%>
 
     <%= form.submit "Сохранить", class: "btn btn-primary" %>
     <% end %>

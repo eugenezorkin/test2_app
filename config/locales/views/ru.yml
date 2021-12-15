@@ -42,3 +42,10 @@ ru:
       save_button: "Сохранить"
     edit:
       profile: "Профиль"
+  admin:
+    news:
+      form:
+        title: "Заголовок"
+        content: "Текст"
+        save_button: "Сохранить"
+    
