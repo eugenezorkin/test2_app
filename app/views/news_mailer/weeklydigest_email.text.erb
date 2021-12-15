@@ -1,9 +1,8 @@
-Welcome to example.com, <%= @user.name %>
+Еженедельный дайджест
 ===============================================
 
-You have successfully signed up to example.com,
-your username is: <%= @user.email %>.
-
-To login to the site, just follow this link: <%= @url %>.
-
-Thanks for joining and have a great day!
+Вы подписаны на еженедельную рассылку новостей. Если вы больше не хотите болше получать дайджест вы можете сделать это в настройках своего профиля на сайте.
+    
+<% @news.each do |new| %>
+<%= new.title %> <%= url_for(new) %> 
+<% end %>

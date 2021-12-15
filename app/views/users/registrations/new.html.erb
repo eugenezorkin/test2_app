@@ -1,5 +1,5 @@
-<% provide(:title, 'Регистрация') %>
-<h1>Регистрация</h1>
+<% provide(:title, t('.title')) %>
+<h1><%= t('.title') %></h1>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -11,20 +11,20 @@
 
   
  
-    <%= f.label 'Имя' %>
+    <%= f.label t('.name')  %>
     <%= f.text_field :name, autofocus: true, class: 'form-control' %>
 
 
-    <%= f.label 'Пароль' %>
+    <%= f.label t('.password') %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> символов минимум)</em>
+    <em>(<%= t('.password_length_minimum_info', minimum_password_length: @minimum_password_length) %> )</em>
     <% end %>
     <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
 
-    <%= f.label 'Повторите пароль' %>
+    <%= f.label t('.confirm_password') %>
     <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
 
-    <%= f.submit "Зарегистрироваться", class: "btn btn-primary" %>
+    <%= f.submit t('.register_button'), class: "btn btn-primary" %>
       
     <% end %>
   </div>

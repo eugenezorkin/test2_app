@@ -13,7 +13,7 @@ class DailyDigestJob < ApplicationJob
     
     if @dailydigest_news.count > 0 && @dailydigest_users.count >0
       @dailydigest_users.each do |dailydigest_user|
-        NewsMailer.weekly_digest(dailydigest_user,@dailydigest_news,@day_date).deliver_now
+        NewsMailer.dailydigest_email(dailydigest_user,@dailydigest_news).deliver_now
       end
     end
   end

@@ -3,26 +3,26 @@
     <%= link_to "test2 app", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Главная", root_path %></li>
-        <li><%= link_to "Новости", news_index_path %></li>
+        <li><%= link_to t('.main_page'), root_path %></li>
+        <li><%= link_to t('.news_page'), news_index_path %></li>
         <% if user_signed_in? %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Аккаунт <b class="caret"></b>
+              <%= t('.account') %> <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><%= link_to "Профиль", profile_path %></li>
-              <% if current_user.editor? %><li><%= link_to "Новости", controller: 'admin/news', action: :index %></li><% end %>
-              <% if current_user.admin? %><li><%= link_to "Пользователи", controller: 'admin/users', action: :index %></li><% end %>
+              <li><%= link_to t('.profile_page'), profile_path %></li>
+              <% if current_user.editor? %><li><%= link_to t('.news_page'), controller: 'admin/news', action: :index %></li><% end %>
+              <% if current_user.admin? %><li><%= link_to t('.users_page'), controller: 'admin/users', action: :index %></li><% end %>
               <li class="divider"></li>
               <li>
-                <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
+                <%= link_to t('.logout'), destroy_user_session_path, :method => :delete %>
               </li>
             </ul>
           </li>
         <% else %>
-          <li><%= link_to 'Войти', new_user_session_path %></li>
-          <li><%= link_to 'Зарегистрироваться', new_user_registration_path %></li>
+          <li><%= link_to t('.login'), new_user_session_path %></li>
+          <li><%= link_to t('.register'), new_user_registration_path %></li>
         <% end %>
       </ul>
     </nav>

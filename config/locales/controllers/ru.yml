@@ -1,0 +1,45 @@
+ru:
+  admin:
+    news:
+      create:
+        success: "Новость успешно создана."
+      
+      update:
+        success: "Новость успешно изменена."
+      
+      destroy:
+        success: "Новость была удалена."
+  
+    users:
+      create:
+        success: "Пользователь успешно создан."
+      
+      update:
+        success: "Пользоывтель успешно изменен."
+      
+      destroy:
+        success: "Пользователь был удален."
+  
+  
+  
+  
+  
+  news:
+    create:
+      success: "Новость успешно создана."
+      
+    update:
+      success: "Новость успешно изменена."
+      
+    destroy:
+      success: "Новость была удалена."
+  users:
+    create:
+      success: "Пользователь успешно создан."
+      
+    update:
+      success: "Пользоывтель успешно изменен."
+      
+    destroy:
+      success: "Пользователь был удален."
+  

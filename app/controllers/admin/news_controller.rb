@@ -1,7 +1,6 @@
 class Admin::NewsController < ApplicationController
   before_action :set_news, only: [:show, :edit, :update, :destroy]
   #before_action :authenticate_user!
-  #before_action :check_permissions, :only => [:new, :create, :cancel]
 
   before_action :check_permissions, :only => [:new, :create, :update, :cancel, :edit]
   before_action :set_current_user_id_to_created_news, only: :create
@@ -52,7 +51,7 @@ class Admin::NewsController < ApplicationController
 
     respond_to do |format|
       if @news.save
-        flash[:success] = "Новость успешно создана."
+        flash[:success] = t('.success')
         format.html { redirect_to action: 'edit', id: @news.id }
         format.json { render :show, status: :created, location: @news }
       else
@@ -67,7 +66,7 @@ class Admin::NewsController < ApplicationController
   def update
     respond_to do |format|
       if @news.update(news_params)
-        flash[:success] = "Новость успешно изменена."
+        flash[:success] = t('.success')
         format.html { redirect_to action: 'edit', id: @news.id }
         format.json { render :show, status: :ok, location: @news }
       else
@@ -82,7 +81,7 @@ class Admin::NewsController < ApplicationController
   def destroy
     @news.destroy
     respond_to do |format|
-      flash[:success] = "Новость была удалена."
+      flash[:success] = t('.success')
       format.html { redirect_to action: 'index' }
       format.json { head :no_content }
     end

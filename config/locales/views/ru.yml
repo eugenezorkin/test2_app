@@ -1,0 +1,44 @@
+ru:
+  shared:
+    error_messages_news:
+      the_form_contain: "Форма содержит "
+      error: "ошибка"
+    error_messages:
+      the_form_contain: "Форма содержит "
+      error: "ошибка"
+  static_pages:
+    home:
+      title_page: "Тестовое задание"
+      register_button: "Регистрация"
+      login_button: "Войти"
+      logout_button: "Выйти"
+      or: "или"
+      you_are_autorized: "Вы авторизованы как"
+  layouts:
+    header:
+      register: "Регистрация"
+      login: "Войти"
+      logout: "Выйти"
+      account: "Аккаунт"
+      main_page: "Главная"
+      news_page: "Новости"
+      users_page: "Пользователи"
+      profile_page: "Профиль"
+    footer:
+      news_page: "Новости"
+      fio: "Зорькин Евгений"
+  users:
+    registrations:
+      new:
+        title: "Регистрация"
+        name: "Имя"
+        password: "Пароль"
+        confirm_password: "Повторите пароль"
+        password_length_minimum_info: "%{minimum_password_length} символов минимум"
+        register_button: "Зарегистрироваться"
+    form:
+      name: "Имя"
+      digest: "Рассылка дайджеста"
+      save_button: "Сохранить"
+    edit:
+      profile: "Профиль"

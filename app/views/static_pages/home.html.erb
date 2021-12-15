@@ -1,17 +1,9 @@
 <div class="center jumbotron">
-  <h1>Тестовое задание</h1>
+  <h1><%= t('.title_page') %></h1>
 
 <% if not user_signed_in? %>
-  <%= link_to "Регистрируйтесь!", new_user_registration_path, class: "btn btn-lg btn-primary" %> или <%= link_to "Логиньтесь!", new_user_session_path, class: "btn btn-lg btn-primary" %>
+  <%= link_to t('.register_button'), new_user_registration_path, class: "btn btn-lg btn-primary" %> <%= t('.or') %> <%= link_to t('.login_button'), new_user_session_path, class: "btn btn-lg btn-primary" %>
   <% else %>
-  Вы авторизованы.<%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
+  <%= t('.you_are_autorized') %> <%=current_user.email %>.  <%= link_to t('.logout_button'), destroy_user_session_path, :method => :delete %>
   <% end %>
 </div>
-
-<p><%= @start_date %></p>
-<p><%= @end_date %></p>
-
-<% @dailydigest_news.each do |dailydigest_new| %>
-<p><%= dailydigest_new.created_at %> <%= dailydigest_new.title %></p>
-<% end %>
-<p>count=<%=@dailydigest_news.count %></p>
