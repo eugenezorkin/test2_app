@@ -1,7 +1,8 @@
 class News < ApplicationRecord
   belongs_to :user
   before_save :count_edits
-
+  validates :title, presence: true, length: { maximum: 255 }
+  validates :content, presence: true
   validate :check_edits_number
   
   def check_edits_number
