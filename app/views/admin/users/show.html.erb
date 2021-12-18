@@ -1,29 +1,28 @@
-<p id="notice"><%= notice %></p>
-
+<h1><%=t(".title", user_name: @user.email) %></h1>
 <p>
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
 
 <p>
-  <strong>Name:</strong>
+  <strong><%=t("field_user_name")%>:</strong>
   <%= @user.name %>
 </p>
 
 <p>
-  <strong>Admin:</strong>
+  <strong><%=t("field_user_admin")%>:</strong>
   <%= @user.admin %>
 </p>
 
 <p>
-  <strong>Editor:</strong>
+  <strong><%=t("field_user_editor")%>:</strong>
   <%= @user.editor %>
 </p>
 
 <p>
-  <strong>Digest:</strong>
-  <%= @user.digest %>
+  <strong><%=t("field_user_digest")%>:</strong>
+  <%= t(@user.digest) %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to t(".edit_link"), url_for({controller: 'admin/users', action: :edit, id: @user.id}) %> |
+<%= link_to t(".index_link"), admin_users_path %>

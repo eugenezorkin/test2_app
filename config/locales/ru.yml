@@ -33,6 +33,11 @@ ru:
   nodigest: "нет"
   weekly: "еженедельно"
   dayly: "ежедневно"
+  
+  field_user_name: "Имя"
+  field_user_editor: "Редактор"
+  field_user_admin: "Админ"
+  field_user_digest: "Дайджест"
 
   activerecord:
     errors:

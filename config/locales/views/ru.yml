@@ -48,6 +48,11 @@ ru:
         title: "Заголовок"
         content: "Текст"
         save_button: "Сохранить"
+    users:
+      show:
+        title: "Пользователь %{user_name}"
+        edit_link: "Редактировать"
+        index_link: "К списку"
   devise:
     passwords:
       new:
