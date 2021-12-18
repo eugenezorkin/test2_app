@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :news
   end
   
-  resources :users
+  resources :users, only: [ :show, :update ]
   get '/profile', to: 'users#edit', via: 'get', :as => :profile
   
 end
