@@ -48,4 +48,20 @@ ru:
         title: "Заголовок"
         content: "Текст"
         save_button: "Сохранить"
+  devise:
+    passwords:
+      new:
+        title: "Забыли пароль?"
+        submit: "Отправить мне инструкции по восстановлению пароля"
+    shared:
+      links:
+        login: "Войти"
+        signup: "Зарегистрироваться"
+        forgot_password: "Забыли пароль?"
+        didnt_receive_confirm_instruct: "Не получили письмо с инструкциями по подтверждению аккаунта?"
+        didnt_receive_unlock_instruct: "Не  получили письмо с инструкциями по разблокировке аккаунта?"
+        signup_with: "Зарегистрироваться через %{minimum_password_length}"
+      error_messages:
+        user: "пользователь"
+        
     
