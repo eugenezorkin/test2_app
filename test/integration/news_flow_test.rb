@@ -18,7 +18,7 @@ class NewsFlowTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "h1", "Авторизация", "no h1 with autorization page title found"
     
-    response = post user_session_path, params: {"user"=>{"email"=>test_email, "password"=>test_password}}
+    post user_session_path, params: {"user"=>{"email"=>test_email, "password"=>test_password}}
     follow_redirect!
 
     assert_equal root_path, path
@@ -35,7 +35,6 @@ class NewsFlowTest < ActionDispatch::IntegrationTest
   
   test "can create edit and delete news" do
     create_user_and_autorize
-    log = Logger.new('log/mylog.log')
     get admin_news_index_path
     assert_response :success
     assert_select "h1", "Новости"
@@ -47,7 +46,7 @@ class NewsFlowTest < ActionDispatch::IntegrationTest
     
     test_title = "test integration title"
     test_content = "test integration content"
-    response = post url_for({controller: "admin/news",action: "create"}), params: {"news"=>{"title"=>test_title, "content"=>test_content}}
+    post url_for({controller: "admin/news",action: "create"}), params: {"news"=>{"title"=>test_title, "content"=>test_content}}
     assert_response :redirect
     follow_redirect!
     
@@ -56,11 +55,10 @@ class NewsFlowTest < ActionDispatch::IntegrationTest
     assert_select "div.alert", "Новость успешно создана."
     assert_select "input[name='news[title]'][value=?]", test_title
     assert_select "textarea[name='news[content]']", {:count=>1, :text=>test_content}
-    #  { :count => 1, :text => "sdefsdf" }
     
     new_test_title = "test integration title ver2"
     new_test_content = "test integration content ver2"
-    response = patch url_for({controller: "admin/news",action: "show", id: last_id }), params: {"news"=>{"title"=>new_test_title, "content"=>new_test_content}}
+    patch url_for({controller: "admin/news",action: "show", id: last_id }), params: {"news"=>{"title"=>new_test_title, "content"=>new_test_content}}
     assert_response :redirect
     follow_redirect!
     
