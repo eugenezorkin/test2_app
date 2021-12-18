@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Create a main sample user.
-user = User.create!(name:  "Admin", email: "admin@test.ru", password: "admin123", password_confirmation: "admin123", admin: true)
+User.create!(name:  "Admin", email: "admin123@admin.ru", password: "admin123", password_confirmation: "admin123", admin: true, editor: true)
 
-new = News.create!(title:  "Тестовый титл", content: "Тестовый контенит", user_id: 1)
-new2 = News.create!(title:  "Тестовый титл2", content: "Тестовый контенит2", user_id: 1)
+News.create!(title:  "Тестовый титл", content: "Тестовый контенит", user_id: 1)
+News.create!(title:  "Тестовый титл2", content: "Тестовый контенит2", user_id: 1)
