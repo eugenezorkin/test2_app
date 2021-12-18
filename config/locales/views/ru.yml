@@ -53,6 +53,8 @@ ru:
         title: "Пользователь %{user_name}"
         edit_link: "Редактировать"
         index_link: "К списку"
+      form:
+        save_button: "Сохранить"
   devise:
     passwords:
       new:
