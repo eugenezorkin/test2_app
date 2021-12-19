@@ -1,16 +1,43 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
 # РАЗВЕРТЫВАНИЕ САЙТА
 
 Выполните последовательно команды в консоли, находясь в директории, в которой вы хотите развернуть проект.
 Описание для среды, развернутой по инструкции https://gorails.com/setup/windows/10
+Важно! Используются не самые актуальные ruby и гемы, так как изначально я начал делать проект по railstutorial (в среде AWS Cloud9) и так и продолжил. Чтобы избежать ошибок при развертывания проекта предлагаю использовать те же версии.
+
+rbenv install 2.7.4
+
+gem install rails -v 6.1.4.1
+
+gem install bundler -v 2.2.17
+
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt update
+sudo apt install yarn
+
+Перейдите в папку, в которой планируете создать папку проекта и выполните:
+git clone https://github.com/eugenezorkin/test2_app.git
+
+cd test2_app
+
+bundle _2.2.17_ install 
+rails db:setup
+rails db:migrate
+
+yarn install --check-files
+
+rails server (по умолчанию development) или 
+rails server -e production (для загрузки в режиме production)
 
 
+Для запуска выполнения задач (в данный момент выполнение задач не работает)
+* установить Redis
+sudo apt install redis-server
+sudo systemctl start redis-server
+sudo systemctl enable redis-server
 
-
+* выполнить в консоли
+resque:work QUEUE=*
 
 
 # СТРУКТУРА САЙТА
@@ -89,24 +116,11 @@ application up and running.
 Написал интеграционный тест для тестирования функционала новостей для редакторов. Тест включает в себя проверку всего цикла - создание, редактирование и удаление.
 
 
+# НЕСДЕЛАННЫЕ ПУНКТЫ ЗАДАНИЯ
 
+* отправка уведомления редактору после сохранения правок (не сделано, надо было уточнить задачу, но я не уточнил)
 
-Things you may want to cover:
+# НЕРЕШЕННЫЕ ПРОБЛЕМЫ
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* выполнение задач отправки рассылки по расписанию resque-scheduler (почему-то не отрабатывает вызов метода perform у job)
+* просмотр preview NewsMailer - при превышении определенного количества кириллических символов выводит нечитаемые символы. При этом при использовании коротких кириллических текстов или если текст написан латиницей, тогда все ок.
