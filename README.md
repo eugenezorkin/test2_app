@@ -37,7 +37,7 @@ sudo systemctl start redis-server
 sudo systemctl enable redis-server
 
 * выполнить в консоли
-resque:work QUEUE=*
+rails resque:scheduler
 
 
 # СТРУКТУРА САЙТА
