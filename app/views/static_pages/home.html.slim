@@ -1,0 +1,12 @@
+.center.jumbotron
+  h1
+    = t('.title_page')
+  - if not user_signed_in?
+    = link_to t('.register_button'), new_user_registration_path, class: "btn btn-lg btn-primary"
+    = t('.or')
+    = link_to t('.login_button'), new_user_session_path, class: "btn btn-lg btn-primary"
+  - else
+    = t('.you_are_autorized')
+    =current_user.email
+    | . 
+    = link_to t('.logout_button'), destroy_user_session_path, :method => :delete

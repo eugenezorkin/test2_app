@@ -1,0 +1,19 @@
+p
+  strong
+    | Title:
+  = @news.title
+p
+  strong
+    | Content:
+  = @news.content
+p
+  strong
+    | Author:
+  = @news.author
+p
+  strong
+    | User:
+  = @news.user_id
+= link_to 'Редактировать', url_for({controller: 'admin/news', action: :edit, id: @news.id })
+|  | 
+= link_to 'Назад', url_for({controller: 'admin/news', action: :index })

@@ -1,0 +1,11 @@
+- if resource.errors.any?
+  #error_explanation
+    h2
+      - resource_translated = t(".#{resource.class.model_name.human.downcase}")
+      = I18n.t("errors.messages.not_saved",
+      -                  count: resource.errors.count,
+      -                  resource: resource_translated)
+    ul
+      - resource.errors.full_messages.each do |message|
+        li
+          = message

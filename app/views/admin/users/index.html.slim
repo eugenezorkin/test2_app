@@ -1,0 +1,40 @@
+h1
+  | Пользователи
+table.table
+  thead
+    tr
+      th
+        | ID
+      th
+        | Имя
+      th
+        | email
+      th
+        | редактор
+      th
+        | админ
+      th
+        | Дайджест
+      th[colspan="4"]
+  tbody
+    - @users.each do |user|
+      tr
+        td
+          = user.id
+        td
+          = user.name
+        td
+          = user.email
+        td
+          = user.editor ? "да" : "нет"
+        td
+          = user.admin ? "да" : "нет"
+        td
+          = user.digest
+        td
+          = link_to "Просмотр", :controller => :users, :action => :show, :id => user.id
+        td
+          = link_to "Редактировать", :controller => :users, :action => :edit, :id => user.id
+        td
+          = link_to 'Удалить', {controller: :users, action: :show, id: user.id}, method: :delete, data: { confirm: 'Вы уверены?' }
+br

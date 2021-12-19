@@ -1,0 +1,17 @@
+.row
+  .col-md-6.col-md-offset-3
+    = form_with(model: @user, url: url_for({controller: 'admin/users', action: :show, id: params[:id]}), local: true) do |form|
+      = render 'shared/error_messages'
+      = form.label :email
+      = form.text_field :email, class: 'form-control'
+      = form.label t("field_user_name")
+      = form.text_field :name, class: 'form-control'
+      .form-check
+        = form.check_box :admin, class: 'form-check-input'
+        = form.label t("field_user_admin"), class: 'form-check-label'
+      .form-check
+        = form.check_box :editor, class: 'form-check-input', id: 'editor_checkbox'
+        = form.label t("field_user_editor"), class: 'form-check-label', for: 'editor_checkbox'
+      = form.label t("field_user_digest")
+      = form.select(:digest, User.digests.keys.map {|digest| [t(digest),digest]} , {}, class: 'form-control')
+      = form.submit t(".save_button"), class: "btn btn-primary"

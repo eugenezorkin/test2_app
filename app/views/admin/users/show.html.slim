@@ -1,0 +1,29 @@
+h1
+  =t(".title", user_name: @user.email)
+p
+  strong
+    | Email:
+  = @user.email
+p
+  strong
+    =t("field_user_name")
+    | :
+  = @user.name
+p
+  strong
+    =t("field_user_admin")
+    | :
+  = @user.admin
+p
+  strong
+    =t("field_user_editor")
+    | :
+  = @user.editor
+p
+  strong
+    =t("field_user_digest")
+    | :
+  = t(@user.digest)
+= link_to t(".edit_link"), url_for({controller: 'admin/users', action: :edit, id: @user.id})
+|  | 
+= link_to t(".index_link"), admin_users_path

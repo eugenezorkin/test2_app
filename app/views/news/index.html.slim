@@ -1,0 +1,10 @@
+h1
+  | Новости
+.container
+  - @news.each do |new|
+    .row
+      .col-md-12.newsitem
+        h1
+          = link_to new.title, new
+        p
+          = new.content

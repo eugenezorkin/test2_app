@@ -1,0 +1,5 @@
+h1
+  | Редактирование новости
+- @form_url = {controller: :news, action: :show, id: @news.id}
+= render 'form', news: @news
+= link_to '<<К списку', action: :index

@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    meta[content="text/html; charset=UTF-8" http-equiv="Content-Type"]
+  body
+    h1
+      | Ежедневный дайджест новостей
+    p
+      | Вы подписаны на еженедельную рассылку новостей. Если вы больше не хотите болше получать дайджест вы можете сделать это в настройках своего профиля на сайте.
+    - @news.each do |new|
+      p
+        = link_to new.title, new

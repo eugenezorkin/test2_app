@@ -1,0 +1,46 @@
+h1
+  | Новости
+table.table
+  thead
+    tr
+      th
+        | Id
+      th
+        | Title
+      th
+        | Content
+      th
+        | Author
+      th
+        | User
+      th
+        | edits number
+      |  <th 
+      - if(@can_edit)
+      | colspan="3">
+  tbody
+    - @news.each do |new|
+      tr
+        td
+          = new.id
+        td
+          = new.title
+        td
+          = new.content
+        td
+          = new.author
+        td
+          = new.user_id
+        td
+          = new.edits_number
+        td
+          = link_to "Просмотр", new, target: "_blank"
+        - if(@can_edit)
+        td
+          = link_to "Редактировать", :controller => :news, :action => :edit, :id => new.id
+    - if(@can_edit)
+    td
+      = link_to 'Удалить', {controller: :news, action: :show, id: new.id}, method: :delete, data: { confirm: 'Вы уверены?' }
+br
+- if(@can_edit)
+= link_to "Создать новость", {:controller => :news, :action => :new}, class: "btn btn-primary"

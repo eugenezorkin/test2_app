@@ -1,0 +1,7 @@
+.row
+  .col-md-12.newsitem
+    h1
+      = @news.title
+    p
+      = @news.content
+= link_to 'Все новости', news_index_path
