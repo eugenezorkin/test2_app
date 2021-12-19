@@ -82,6 +82,7 @@ Rails.application.configure do
   host = '3d17b7920b48403185e55844a2bae8b0.vfs.cloud9.us-east-2.amazonaws.com'
   #config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.default_url_options = { host: host, protocol: 'https' }
-  
+ 
+  config.action_mailer.preview_path = "#{Rails.root}/test/mailers/previews" 
  
 end
