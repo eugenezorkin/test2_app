@@ -119,6 +119,9 @@ rails resque:work QUEUE=*
 ## Bootstrap
 Подключен гем bootstrap-sass.
 
+## Перевод
+Фразы из части view и контроллеров вынесены в ссоответветствующие файлы локализации *.yml в /config/locales. Подгружены русские yml для devise и rails.
+
 ## erb to slim
 Я изначально все делал на erb. Потом конвертнул с помощью гема html2slim. Работа rails со slim налажена посредством устанвоки гема slim-rails
 
